@@ -61,7 +61,21 @@ export default class UserEdit extends React.Component<
 
   render() {
     return (
-      <Modal isOpen={true} style={{ marginLeft: "20px" }}>
+      <Modal
+        isOpen={true}
+        style={{
+          backgroundColor: "lightgray",
+          // opacity: "0.8",
+          borderRadius: "10px",
+          paddingTop: "10px",
+          paddingLeft: "20px",
+          paddingBottom: "10px",
+          marginTop: "50px",
+          marginRight: "20px",
+          marginLeft: "10%",
+          maxWidth: "75%",
+        }}
+      >
         <ModalHeader>Edit User</ModalHeader>
         <hr />
         <ModalBody>
