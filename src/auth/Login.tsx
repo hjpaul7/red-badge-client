@@ -7,7 +7,8 @@ import React from "react";
 // import Typography from "@material-ui/core/Typography";
 // import { makeStyles } from "@material-ui/core/styles";
 // import Container from "@material-ui/core/Container";
-import { FormGroup, Label, Input, Form, Button } from "reactstrap";
+import { FormGroup, Label, Form } from "reactstrap";
+import { Button, Input } from "antd";
 
 type acceptedProps = {
   token: any;
@@ -54,14 +55,15 @@ export default class Login extends React.Component<acceptedProps, valueTypes> {
   render() {
     return (
       <div>
-        <h1>Login</h1>
+        <h3>Login</h3>
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
             <Label htmlFor="username">
-              <h5>Username</h5>
+              <h4>Username</h4>
             </Label>
             <Input
               onChange={(e) => this.setState({ username: e.target.value })}
+              style={{ maxWidth: "250px" }}
               type="text"
               name="username"
               required
@@ -72,10 +74,11 @@ export default class Login extends React.Component<acceptedProps, valueTypes> {
           </FormGroup>
           <FormGroup>
             <Label htmlFor="password">
-              <h5>Password</h5>
+              <h4>Password</h4>
             </Label>
             <Input
               onChange={(e) => this.setState({ password: e.target.value })}
+              style={{ maxWidth: "250px" }}
               name="password"
               type="password"
               required
@@ -84,7 +87,11 @@ export default class Login extends React.Component<acceptedProps, valueTypes> {
               title="Password must be at least 5 characters"
             />
           </FormGroup>
-          <Button type="submit" color="primary">
+          <Button
+            htmlType="submit"
+            type="primary"
+            style={{ marginTop: "10px" }}
+          >
             Login
           </Button>
         </Form>
