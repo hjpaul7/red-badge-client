@@ -109,6 +109,7 @@ export default class App extends React.Component<{}, valueTypes> {
             protectedViewsAdmin={this.protectedViewsAdmin}
             token={this.state.setToken}
             updateUsername={this.updateUsername}
+            clearToken={this.clearToken}
           />
         </Router>
       </div>

@@ -7,6 +7,7 @@ type acceptedProps = {
   updateUsername: any;
   protectedViews: any;
   protectedViewsAdmin: any;
+  clearToken: any;
 };
 
 export default class Sidebar extends React.Component<acceptedProps, {}> {
@@ -44,11 +45,6 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
             <li className="nav-item">
               <Link to="/AdminPanel" className="nav-link">
                 <span className="link-text">Admin</span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/AdminPanel" className="nav-link">
-                <span className="link-text">Logout</span>
               </Link>
             </li>
           </ul>
