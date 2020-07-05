@@ -248,7 +248,7 @@ export default class AdminPanel extends React.Component<
                   <TableCell align="right">{users.password}</TableCell>
                   <TableCell align="right">
                     <Button
-                      type="primary"
+                      type="link"
                       onClick={() => {
                         this.editUpdateUsers(users);
                         this.updateOn();
@@ -258,7 +258,7 @@ export default class AdminPanel extends React.Component<
                     </Button>
                     <Button
                       style={{ marginLeft: "5px" }}
-                      type="primary"
+                      type="link"
                       danger
                       onClick={() => {
                         this.deleteUser(users);
