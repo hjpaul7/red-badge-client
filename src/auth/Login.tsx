@@ -14,6 +14,7 @@ type acceptedProps = {
   token: any;
   updateUsername: string | any;
   updateUserRole: string | any;
+  updateMessage: string | any;
 };
 
 type valueTypes = {
@@ -48,6 +49,7 @@ export default class Login extends React.Component<acceptedProps, valueTypes> {
         console.log(data);
         this.props.updateUsername(data.user.username);
         this.props.updateUserRole(data.user.userRole);
+        this.props.updateMessage(data.message);
         // this.props.updateMessage(data.message);
       });
   };

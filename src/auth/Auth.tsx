@@ -8,6 +8,7 @@ type acceptedProps = {
   token: any;
   updateUsername: any;
   updateUserRole: string | any;
+  updateMessage: any;
   //   updateMessage: any;
 };
 
@@ -35,12 +36,14 @@ export default class Auth extends React.Component<acceptedProps, valueTypes> {
         token={this.props.token}
         updateUsername={this.props.updateUsername}
         updateUserRole={this.props.updateUserRole}
+        updateMessage={this.props.updateMessage}
       />
     ) : (
       <Login
         token={this.props.token}
         updateUsername={this.props.updateUsername}
         updateUserRole={this.props.updateUserRole}
+        updateMessage={this.props.updateMessage}
       />
     );
   };
