@@ -2,11 +2,14 @@ import React from "react";
 import Login from "./Login";
 import Signup from "./Signup";
 
+import { Button } from "antd";
+
 type acceptedProps = {
   token: any;
   updateUsername: any;
   updateUserRole: string | any;
-  //   updateMessage: any;
+  updateMessage: any;
+ 
 };
 
 type valueTypes = {
@@ -33,12 +36,14 @@ export default class Auth extends React.Component<acceptedProps, valueTypes> {
         token={this.props.token}
         updateUsername={this.props.updateUsername}
         updateUserRole={this.props.updateUserRole}
+        updateMessage={this.props.updateMessage}
       />
     ) : (
       <Login
         token={this.props.token}
         updateUsername={this.props.updateUsername}
         updateUserRole={this.props.updateUserRole}
+        updateMessage={this.props.updateMessage}
       />
     );
   };
@@ -52,10 +57,16 @@ export default class Auth extends React.Component<acceptedProps, valueTypes> {
 
   render() {
     return (
-      <div>
+      <div style={{ marginTop: "100px" }}>
         <h1>Login or Signup</h1>
         {this.authTernary()}
-        <button onClick={this.loginToggle}>Toggle</button>
+        <Button
+          type="primary"
+          onClick={this.loginToggle}
+          style={{ marginTop: "10px" }}
+        >
+          Toggle
+        </Button>
       </div>
     );
   }

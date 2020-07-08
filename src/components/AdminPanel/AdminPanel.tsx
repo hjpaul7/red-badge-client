@@ -1,6 +1,5 @@
 import React from "react";
 import Table from "@material-ui/core/Table";
-// import { Button } from "@material-ui/core";
 
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -9,18 +8,10 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import UserEdit from "./UserEdit";
-
-import Avatar from "@material-ui/core/Avatar";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-
-import { makeStyles, createStyles, withStyles } from "@material-ui/core/styles";
-
 import { FormGroup, Label, Form } from "reactstrap";
 import { Input, Space, Button } from "antd";
+
+// test for github2
 
 type acceptedProps = {
   token: any;
@@ -34,6 +25,7 @@ type valueTypes = {
   password: string;
   usersToUpdate: {} | [];
   updateActive: boolean;
+  visible: boolean | any;
 };
 
 export default class AdminPanel extends React.Component<
@@ -48,8 +40,16 @@ export default class AdminPanel extends React.Component<
       password: "",
       usersToUpdate: {},
       updateActive: false,
+      visible: this.state,
     };
   }
+
+  showModal = () => {
+    this.setState({
+      visible: true,
+      updateActive: true,
+    });
+  };
 
   componentWillMount() {
     console.log("Admin Panel Users Mounted");
@@ -135,79 +135,87 @@ export default class AdminPanel extends React.Component<
           maxWidth: "75%",
         }}
       >
-        <Form
-          onSubmit={this.adminRegister}
+        <div
           style={{
+            textAlign: "left",
+            float: "left",
+            marginLeft: "20px",
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
+            flexWrap: "wrap",
           }}
         >
-          <FormGroup style={{ marginBottom: "10px" }}>
-            <Space direction="vertical">
-              <Label htmlFor="username">
-                <h4>Username</h4>
-                <br />
-              </Label>
-              <Input
-                placeholder="input username"
-                onChange={(e) => this.setState({ username: e.target.value })}
-                name="username"
-                type="text"
-                style={{ marginTop: "-30px" }}
-                value={this.state.username}
-                required
-                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}"
-                title="Must have at least one number, uppercase, and a lowercase letter. Min 4 chars."
-              />
-            </Space>
-            {/* <Input
-              onChange={(e) => this.setState({ username: e.target.value })}
-              name="username"
-              type="text"
-              value={this.state.username}
-              required
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}"
-              title="Must have at least one number, uppercase, and a lowercase letter. Min 4 chars."
-            /> */}
-          </FormGroup>
-          <FormGroup>
-            <Space direction="vertical">
-              <Label htmlFor="password">
-                <h4>Password</h4>
-                <br />
-              </Label>
-              <Input.Password
-                placeholder="input password"
-                onChange={(e) => this.setState({ password: e.target.value })}
-                name="password"
-                style={{ marginTop: "-30px" }}
-                value={this.state.password}
-                required
-                pattern="(?=.*[a-z]).{5,}"
-                title="Password must be at least 5 characters"
-              />
-            </Space>
-            {/* <Input
-              onChange={(e) => this.setState({ password: e.target.value })}
-              name="password"
-              value={this.state.password}
-              required
-              pattern="(?=.*[a-z]).{5,}"
-              title="Password must be at least 5 characters"
-            /> */}
-          </FormGroup>
+          <h2 style={{ textAlign: "center" }}>
+            <b>Admin Portal</b>
+          </h2>
+          <h3>
+            Admins can register a new user below, form validation still exists
+          </h3>
+          <p>Requirements:</p>
+          <ul>
+            <li>
+              Username must be at least 4 characters, 1 capital letter, and 1
+              number.
+            </li>
+            <li>Password must be at least 4 characters.</li>
+          </ul>
 
-          <Button
-            htmlType="submit"
-            type="primary"
-            style={{ marginTop: "10px", marginBottom: "40px" }}
+          <Form
+            onSubmit={this.adminRegister}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
-            Sign Up
-          </Button>
-        </Form>
+            <FormGroup style={{ marginBottom: "10px" }}>
+              <Space direction="vertical">
+                <Label htmlFor="username">
+                  <h4>Username</h4>
+                  <br />
+                </Label>
+                <Input
+                  placeholder="input username"
+                  onChange={(e) => this.setState({ username: e.target.value })}
+                  name="username"
+                  type="text"
+                  style={{ marginTop: "-30px" }}
+                  value={this.state.username}
+                  required
+                  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}"
+                  title="Must have at least one number, uppercase, and a lowercase letter. Min 4 chars."
+                />
+              </Space>
+            </FormGroup>
+            <FormGroup>
+              <Space direction="vertical">
+                <Label htmlFor="password">
+                  <h4>Password</h4>
+                  <br />
+                </Label>
+                <Input.Password
+                  placeholder="input password"
+                  onChange={(e) => this.setState({ password: e.target.value })}
+                  name="password"
+                  style={{ marginTop: "-30px" }}
+                  value={this.state.password}
+                  required
+                  pattern="(?=.*[a-z]).{5,}"
+                  title="Password must be at least 5 characters"
+                />
+              </Space>
+            </FormGroup>
 
+            <Button
+              htmlType="submit"
+              type="primary"
+              style={{ marginTop: "10px", marginBottom: "40px" }}
+            >
+              Sign Up
+            </Button>
+          </Form>
+        </div>
         <TableContainer
           component={Paper}
           style={{
@@ -216,6 +224,7 @@ export default class AdminPanel extends React.Component<
             overflowX: "hidden",
             maxHeight: "600px",
             marginBottom: "40px",
+            marginLeft: "50%",
             paddingTop: "10px",
             display: "flex",
             justifyContent: "center",
@@ -246,17 +255,18 @@ export default class AdminPanel extends React.Component<
                   <TableCell align="right">{users.password}</TableCell>
                   <TableCell align="right">
                     <Button
-                      type="primary"
+                      type="link"
                       onClick={() => {
                         this.editUpdateUsers(users);
                         this.updateOn();
+                        // this.showModal();
                       }}
                     >
                       Update
                     </Button>
                     <Button
                       style={{ marginLeft: "5px" }}
-                      type="primary"
+                      type="link"
                       danger
                       onClick={() => {
                         this.deleteUser(users);

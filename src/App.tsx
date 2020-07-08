@@ -9,13 +9,17 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Auth from "./auth/Auth";
 import TimeIndex from "./times/timeIndex";
 import Sidebar from "./components/site/Sidebar";
+import Navbar from "./home/Navbar";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
+import TrailIndex from "./trails/trailIndex";
+
 
 type valueTypes = {
   username: any;
   setUsername: any;
   setToken: any;
   setUserRole: string | any;
+  setMessage: string | any;
 };
 
 export default class App extends React.Component<{}, valueTypes> {
@@ -26,6 +30,7 @@ export default class App extends React.Component<{}, valueTypes> {
       setUsername: "",
       setToken: "",
       setUserRole: "",
+      setMessage: "",
     };
   }
 
@@ -64,9 +69,15 @@ export default class App extends React.Component<{}, valueTypes> {
     console.log(this.state.setUserRole);
   };
 
+  updatedMessage = (newMessage: string) => {
+    localStorage.setItem("message", newMessage);
+    this.setState({ setMessage: newMessage });
+    console.log(newMessage);
+  };
+
   clearToken = () => {
     localStorage.clear();
-    this.setState({ setUserRole: "" });
+    this.setState({ setUserRole: "", setUsername: "", setMessage: "" });
   };
 
   protectedViews = () => {
@@ -80,6 +91,24 @@ export default class App extends React.Component<{}, valueTypes> {
         token={this.updateToken}
         updateUsername={this.updateUsername}
         updateUserRole={this.updateUserRole}
+        updateMessage={this.updatedMessage}
+      />
+    );
+  };
+
+  protectedViewsTrails = () => {
+    return this.state.setToken === localStorage.getItem("token")
+    ? (
+      <TrailIndex
+        token={this.state.setToken}
+        updateUsername={this.updateUsername}
+      />
+    ) : (
+      <Auth
+        token={this.updateToken}
+        updateUsername={this.updateUsername}
+        updateUserRole={this.updateUserRole}
+        updateMessage={this.updatedMessage}
       />
     );
   };
@@ -96,6 +125,7 @@ export default class App extends React.Component<{}, valueTypes> {
         token={this.updateToken}
         updateUsername={this.updateUsername}
         updateUserRole={this.updateUserRole}
+        updateMessage={this.updatedMessage}
       />
     );
   };
@@ -104,11 +134,14 @@ export default class App extends React.Component<{}, valueTypes> {
     return (
       <div className="App">
         <Router>
+          <Navbar clearToken={this.clearToken} />
           <Sidebar
             protectedViews={this.protectedViews}
+            protectedViewsTrails={this.protectedViewsTrails}
             protectedViewsAdmin={this.protectedViewsAdmin}
             token={this.state.setToken}
             updateUsername={this.updateUsername}
+            clearToken={this.clearToken}
           />
         </Router>
       </div>
