@@ -22,6 +22,9 @@ type acceptedProps = {
     shop: [];
     editUpdateShop: any;
     updateOn: any;
+    fetchShops: any;
+    shopToUpdate: any;
+    updateOff: any;
 };
 
 const useRowStyles = makeStyles({
@@ -101,7 +104,15 @@ const rows = [
   createData('Park 3'),
   createData('Park 4'),
 ];
-export default class shopTable extends React.Component <acceptedProps > {
+
+type valueTypes = {
+    nameOfShop: string;
+    address: string;
+    closestTrail: string;
+    hours: string;
+  };
+
+export default class shopTable extends React.Component <acceptedProps, valueTypes > {
     constructor(props: acceptedProps) {
         super(props);
         this.state = {
@@ -111,6 +122,55 @@ export default class shopTable extends React.Component <acceptedProps > {
             hours: "",
         };
     }
+
+    
+
+    handleSubmit = (event: any) => {
+        fetch(`http://localhost:4000/shop/`, {
+            method: "POST",
+            body: JSON.stringify({
+                nameOfShop: this.state.nameOfShop,
+                address: this.state.address,
+                closestTrail: this.state.closestTrail,
+                hours: this.state.hours,
+            }),
+            headers: new Headers ({
+                "Content-Type": "application/json",
+                Authorization: this.props.token,
+            }),
+        })
+        .then((res) => res.json())
+        .then((logData) => {
+            this.setState({
+                nameOfShop: this.state.nameOfShop,
+                address: this.state.address,
+                closestTrail: this.state.closestTrail,
+                hours: this.state.hours,
+            });
+            this.props.getShops();
+        });
+    };
+
+    shopUpdate = (event: any) => {
+        event.preventDefault();
+        fetch(`http://localhost:4000/${this.props.shopToUpdate.id}`, {
+          method: "PUT",
+          body: JSON.stringify({
+            nameOfShop: this.state.nameOfShop,
+            address: this.state.address,
+            closestTrail: this.state.closestTrail,
+            hours: this.state.hours,
+          }),
+          headers: new Headers({
+            "Content-Type": "application/json",
+            Authorization: this.props.token,
+          }),
+        }).then((res) => {
+          this.props.fetchShops();
+          this.props.updateOff();
+        });
+      };
+
     deleteShop = (shop: any) => {
         fetch(`http://localhost:4000/shop/${shop.id}`, {
             method: "DELETE",

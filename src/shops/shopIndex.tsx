@@ -1,7 +1,7 @@
 import React from "react";
-import ShopCreate from "./shopCreate";
+// import ShopCreate from "./shopCreate";
 import ShopTable from "./shopTable";
-import ShopEdit from "./shopEdit";
+// import ShopEdit from "./shopEdit";
 import { Container, Card } from "@material-ui/core";
 
 type acceptedProps ={
@@ -13,6 +13,7 @@ type valueTypes ={
     shop: [];
     updateActive: boolean;
     shopToUpdate: string;
+   
 };
 
 export default class shopIndex extends React.Component < acceptedProps, valueTypes > {
@@ -32,6 +33,13 @@ export default class shopIndex extends React.Component < acceptedProps, valueTyp
             updateActive: true
         });
     };
+
+    updateOff = () => {
+        this.setState({
+          updateActive: false,
+        });
+      };
+
     getShops = () => {
         fetch(`http://localhost:4000/shop/`, {
             method: "GET",
@@ -56,7 +64,7 @@ export default class shopIndex extends React.Component < acceptedProps, valueTyp
                     marginTop: "5%",
                     backgroundColor: "lightgrey",
                     paddingBottom: "5%",
-                    paddingTop:"1%",
+                    paddingTop:"2%",
                 }}>
                 <h1>Closest Bike Shops</h1>
                 <Container style={{
@@ -74,11 +82,13 @@ export default class shopIndex extends React.Component < acceptedProps, valueTyp
                  editUpdateShop={this.editUpdateShop}
                  updateOn={this.updateOn}
                  getShops={this.getShops}
+                 fetchShops={this.getShops}
+                 shopToUpdate={this.state.shopToUpdate}
+                 updateOff={this.updateOff}
                  />
                  {/* <ShopEdit 
                  token={this.props.token}updateUsername={this.props.updateUsername}
-                 fetchShops={this.getShops}shopToUpdate={this.state.shopToUpdate}
-                 updateOff={this.updateOn}
+                 
                  /> */}
                 
             </Container>
