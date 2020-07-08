@@ -1,149 +1,136 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import React from "react";
+import Table from "@material-ui/core/Table";
+// import { Button } from "@material-ui/core";
+import { Button } from "antd";
 
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import "../times/TimeTable.css";
 
 type acceptedProps = {
-    token: any;
-    updateUsername: any;
-    getShops: any;
-    shop: [];
-    editUpdateShop: any;
-    updateOn: any;
+  token: any;
+  updateUsername: any;
+  getShops: any;
+  shops: [];
+  editUpdateShop: any;
+  updateOn: any;
+ 
 };
 
-const useRowStyles = makeStyles({
-  root: {
-    '& > *': {
-      borderBottom: 'unset',
-    },
-  },
-});
+type valueTypes = {
+  nameOfShop: string;
+  address: string;
+  closestTrail: string;
+  hours: string;
+};
 
-
-function createData(
-    closestTrail: string,
-) {
-  return {
-    closestTrail,
-  };
-}
-
-function Row(props: { row: ReturnType<typeof createData> }) {
-    const { row } = props;
-    const [open, setOpen] = React.useState(false);
-    const classes = useRowStyles();
-  
-    return (
-      <React.Fragment>
-        <TableRow className={classes.root}>
-          <TableCell>
-            <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
-              {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-            </IconButton>
-          </TableCell>
-          <TableCell component="th" scope="row">
-            {row.closestTrail}
-          </TableCell>
-          {/* <TableCell align="right">{row.nameOfShop}</TableCell>
-          <TableCell align="right">{row.address}</TableCell>
-          <TableCell align="right">{row.hours}</TableCell> */}
-        </TableRow>
-        <TableRow>
-          <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-            <Collapse in={open} timeout="auto" unmountOnExit>
-              <Box margin={1}>
-                <Typography variant="h6" gutterBottom component="div">
-                  Bill's Bike Shop 
-                </Typography>
-                <Table size="small" aria-label="purchases">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Address</TableCell>
-                      <TableCell>Hours</TableCell>
-                      <TableCell align="right">Update</TableCell>
-                      <TableCell align="right">Delete</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell>123 Alpha Street</TableCell>
-                      <TableCell>M-F 8am - 10pm</TableCell>
-                      <TableCell align="right">Update</TableCell>
-                      <TableCell align="right">Delete</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  
-                </Table>
-              </Box>
-            </Collapse>
-          </TableCell>
-        </TableRow>
-      </React.Fragment>
-    );
+export default class TimeTable extends React.Component<
+  acceptedProps,
+  valueTypes
+> {
+  constructor(props: acceptedProps) {
+    super(props);
+    this.state = {
+      nameOfShop: "",
+      address: "",
+      closestTrail: "",
+      hours: "",
+    };
   }
 
-const rows = [
-  createData('Harrison State Park'),
-//   {trails.nameOfPark}
-  createData('Park 1'),
-  createData('Park 2'),
-  createData('Park 3'),
-  createData('Park 4'),
-];
-export default class shopTable extends React.Component <acceptedProps > {
-    constructor(props: acceptedProps) {
-        super(props);
-        this.state = {
-            nameOfShop: "",
-            address: "",
-            closestTrail: "",
-            hours: "",
-        };
-    }
-    deleteShop = (shop: any) => {
-        fetch(`http://localhost:4000/shop/${shop.id}`, {
-            method: "DELETE",
-            headers: new Headers ({
-                "Content-Type": "application/json",
-                Authorization: this.props.token,
-            }),
-        }).then(()=> this.props.getShops());
-    };
-    componentDidMount() {
-        this.props.getShops();
-    }
-render () {
-  return (
-    <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell>Name Of Park</TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right"></TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <Row key={row.closestTrail} row={row} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
-}
+  componentWillMount() {
+    console.log("Shop Table Mounted");
+  }
+
+
+  deleteShop = (shops: any) => {
+    fetch(`http://localhost:4000/shop/${shops.id}`, {
+      method: "DELETE",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: this.props.token,
+      }),
+    }).then(() => this.props.getShops());
+  };
+
+  componentDidMount() {
+    this.props.getShops();
+  }
+
+  render() {
+    return (
+      <TableContainer
+        component={Paper}
+        style={{
+          borderRadius: "10px",
+          overflow: "scroll",
+          display: "block",
+          overflowX: "hidden",
+          height: "600px",
+          marginBottom: "20px",
+        }}
+      >
+        <Table style={{ minWidth: "650px" }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell component="th" scope="row">
+                <b>Name of Bike Shop</b>
+              </TableCell>
+              <TableCell align="right">
+                <b>Address</b>
+              </TableCell>
+              <TableCell align="right">
+                <b>Closest Trail</b>
+              </TableCell>
+              <TableCell align="right">
+                <b>Hours</b>
+              </TableCell>
+              <TableCell align="right">
+                <b>Update or Delete</b>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {this.props.shops.map((shops: any, main) => (
+              <TableRow key={main}>
+                <TableCell component="th" scope="row">
+                  {shops.nameOfShop}
+                </TableCell>
+                <TableCell align="right">{shops.address}</TableCell>
+                <TableCell align="right">{shops.closestTrail}</TableCell>
+                <TableCell align="right">{shops.hours}</TableCell>
+                <TableCell align="right">
+                  <Button
+                    type="link"
+                    onClick={() => {
+                      this.props.editUpdateShop(shops);
+                      this.props.updateOn();
+                    }}
+                  >
+                    Update
+                  </Button>
+                  <Button
+                    style={{ marginLeft: "5px" }}
+                    type="link"
+                    danger
+                    onClick={() => {
+                      this.deleteShop(shops);
+                    }}
+                  >
+                    Delete
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    
+    );
+  }
+  
 }
