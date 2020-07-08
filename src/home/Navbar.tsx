@@ -32,7 +32,6 @@ export default class Navbar extends React.Component<acceptedProps, {}> {
       <p>Please Register or Login.</p>
     ) : localStorage.getItem("message") === "You have succesfully logged in" ? (
       <h6>
-        {" "}
         <b>Welcome back,</b>
         {localStorage.getItem("username")}
       </h6>
