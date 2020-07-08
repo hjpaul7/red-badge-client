@@ -1,6 +1,5 @@
 import React from "react";
 import Table from "@material-ui/core/Table";
-// import { Button } from "@material-ui/core";
 
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -9,16 +8,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import UserEdit from "./UserEdit";
-
-import Avatar from "@material-ui/core/Avatar";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Box from "@material-ui/core/Box";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-
-import { makeStyles, createStyles, withStyles } from "@material-ui/core/styles";
-
 import { FormGroup, Label, Form } from "reactstrap";
 import { Input, Space, Button } from "antd";
 

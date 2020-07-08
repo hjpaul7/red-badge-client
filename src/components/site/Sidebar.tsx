@@ -1,7 +1,10 @@
 import React from "react";
 import { Route, Link, Switch } from "react-router-dom";
 import "./Sidebar.css";
+// import UserPanel from "../UserPanel/UserPanel";
+
 import ShopIndex from "../../shops/shopIndex";
+
 
 type acceptedProps = {
   token: any;
@@ -48,6 +51,13 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
                 <span className="link-text">Admin</span>
               </Link>
             </li>
+
+            {/* <li className="nav-item">
+              <Link to="/UserPanel" className="nav-link">
+                <span className="link-text">User</span>
+              </Link>
+            </li> */}
+
             <li className="shop-item">
               <Link to="/Shops" className="shop-link">
                 <span className="link-text">Bike Shops</span>
@@ -59,6 +69,7 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
               </Link>
             </li>
             
+
           </ul>
         </nav>
         <div className="sidebar-route">
@@ -69,12 +80,21 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
             <Route exact path="/AdminPanel">
               {this.props.protectedViewsAdmin()}
             </Route>
+
+            {/* <Route exact path="/UserPanel">
+              <UserPanel
+                token={this.props.token}
+                updateUsername={this.props.updateUsername}
+              />
+            </Route> */}
+
             <Route exact path="/Shops">
             <ShopIndex 
             token={this.props.token} 
             updateUsername={this.props.updateUsername}
             />
             </Route>
+
           </Switch>
         </div>
         {/* </div> */}

@@ -27,6 +27,24 @@ export default class Navbar extends React.Component<acceptedProps, {}> {
     );
   }
 
+  welcomeMessage() {
+    return localStorage.getItem("message") === null ? (
+      <p>Please Register or Login.</p>
+    ) : localStorage.getItem("message") === "You have succesfully logged in" ? (
+      <h6>
+        <b>Welcome back,</b>
+        {localStorage.getItem("username")}
+      </h6>
+    ) : localStorage.getItem("message") === "user created" ? (
+      <h6>
+        <b>Welcome,</b>
+        {localStorage.getItem("username")}
+      </h6>
+    ) : (
+      "null"
+    );
+  }
+
   render() {
     return (
       <AppBar position="static">
@@ -35,7 +53,10 @@ export default class Navbar extends React.Component<acceptedProps, {}> {
             variant="h6"
             id="navTitle"
             className="classes.title"
-          ></Typography>
+            style={{ marginLeft: "60px" }}
+          >
+            {this.welcomeMessage()}
+          </Typography>
           {this.logoutBtn()}
         </Toolbar>
       </AppBar>

@@ -18,6 +18,7 @@ type valueTypes = {
   setUsername: any;
   setToken: any;
   setUserRole: string | any;
+  setMessage: string | any;
 };
 
 export default class App extends React.Component<{}, valueTypes> {
@@ -28,6 +29,7 @@ export default class App extends React.Component<{}, valueTypes> {
       setUsername: "",
       setToken: "",
       setUserRole: "",
+      setMessage: "",
     };
   }
 
@@ -66,9 +68,15 @@ export default class App extends React.Component<{}, valueTypes> {
     console.log(this.state.setUserRole);
   };
 
+  updatedMessage = (newMessage: string) => {
+    localStorage.setItem("message", newMessage);
+    this.setState({ setMessage: newMessage });
+    console.log(newMessage);
+  };
+
   clearToken = () => {
     localStorage.clear();
-    this.setState({ setUserRole: "" });
+    this.setState({ setUserRole: "", setUsername: "", setMessage: "" });
   };
 
   protectedViews = () => {
@@ -82,6 +90,7 @@ export default class App extends React.Component<{}, valueTypes> {
         token={this.updateToken}
         updateUsername={this.updateUsername}
         updateUserRole={this.updateUserRole}
+        updateMessage={this.updatedMessage}
       />
     );
   };
@@ -98,6 +107,7 @@ export default class App extends React.Component<{}, valueTypes> {
         token={this.updateToken}
         updateUsername={this.updateUsername}
         updateUserRole={this.updateUserRole}
+        updateMessage={this.updatedMessage}
       />
     );
   };
