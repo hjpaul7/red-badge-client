@@ -9,7 +9,7 @@ type acceptedProps = {
   updateUsername: any;
   updateUserRole: string | any;
   updateMessage: any;
-  //   updateMessage: any;
+ 
 };
 
 type valueTypes = {
