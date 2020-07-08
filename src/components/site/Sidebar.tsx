@@ -57,6 +57,10 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
                 <span className="link-text">Admin</span>
               </Link>
             </li>
+<<<<<<< HEAD
+            <li className="nav-item">
+              <Link to="/Shops" className="nav-link">
+=======
 
             {/* <li className="nav-item">
               <Link to="/UserPanel" className="nav-link">
@@ -66,6 +70,7 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
 
             <li className="shop-item">
               <Link to="/Shops" className="shop-link">
+>>>>>>> e47a4c26103a7eca27ba37745c9bdfdb94a257d0
                 <span className="link-text">Bike Shops</span>
               </Link>
             </li>
