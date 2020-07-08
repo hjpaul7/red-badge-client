@@ -1,8 +1,8 @@
 import React from "react";
 import {
+  Form,
   FormGroup,
   Label,
-  Form,
   Modal,
   ModalHeader,
   ModalBody,
@@ -22,6 +22,7 @@ type acceptedProps = {
 type valueTypes = {
   editUsername: string | any;
   editPassword: string | any;
+  editUserRole: string | any;
 };
 
 export default class UserEdit extends React.Component<
@@ -33,6 +34,7 @@ export default class UserEdit extends React.Component<
     this.state = {
       editUsername: this.props.usersToUpdate.username,
       editPassword: this.props.usersToUpdate.password,
+      editUserRole: this.props.usersToUpdate.userRole,
     };
   }
 
@@ -48,6 +50,7 @@ export default class UserEdit extends React.Component<
         user: {
           username: this.state.editUsername,
           password: bcrypt.hashSync(this.state.editPassword, salt),
+          userRole: this.state.editUserRole,
         },
       }),
       headers: new Headers({
@@ -61,7 +64,21 @@ export default class UserEdit extends React.Component<
 
   render() {
     return (
-      <Modal isOpen={true} style={{ marginLeft: "20px" }}>
+      <Modal
+        isOpen={true}
+        style={{
+          backgroundColor: "lightgray",
+          // opacity: "0.8",
+          borderRadius: "10px",
+          paddingTop: "10px",
+          paddingLeft: "20px",
+          paddingBottom: "10px",
+          marginTop: "50px",
+          marginRight: "20px",
+          marginLeft: "10%",
+          maxWidth: "75%",
+        }}
+      >
         <ModalHeader>Edit User</ModalHeader>
         <hr />
         <ModalBody>
@@ -78,17 +95,9 @@ export default class UserEdit extends React.Component<
                   }
                 />
               </Space>
-
-              {/* // <Input
-              //   name="name"
-              //   value={this.state.editUsername}
-              //   onChange={(e) =>
-              //     this.setState({ editUsername: e.target.value })
-              //   }
-              // /> */}
             </FormGroup>
             <FormGroup>
-              <Label htmlFor="day">Edit Password:</Label>
+              <Label htmlFor="password">Edit Password:</Label>
               <Space direction="vertical">
                 <Input
                   style={{ marginLeft: "10px" }}
@@ -96,6 +105,20 @@ export default class UserEdit extends React.Component<
                   value={this.state.editPassword}
                   onChange={(e) =>
                     this.setState({ editPassword: e.target.value })
+                  }
+                />
+              </Space>
+            </FormGroup>
+
+            <FormGroup>
+              <Label htmlFor="userRole">Edit UserRole:</Label>
+              <Space direction="vertical">
+                <Input
+                  style={{ marginLeft: "10px" }}
+                  name="userRole"
+                  value={this.state.editUserRole}
+                  onChange={(e) =>
+                    this.setState({ editUserRole: e.target.value })
                   }
                 />
               </Space>

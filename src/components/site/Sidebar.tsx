@@ -1,13 +1,18 @@
 import React from "react";
 import { Route, Link, Switch } from "react-router-dom";
 import "./Sidebar.css";
+// import UserPanel from "../UserPanel/UserPanel";
+
 import ShopIndex from "../../shops/shopIndex";
+
 
 type acceptedProps = {
   token: any;
   updateUsername: any;
   protectedViews: any;
   protectedViewsAdmin: any;
+  protectedViewsTrails: any;
+  clearToken: any;
 };
 
 export default class Sidebar extends React.Component<acceptedProps, {}> {
@@ -43,12 +48,29 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
               </Link>
             </li>
             <li className="nav-item">
+              <Link to="/trails" className="nav-link">
+                <span className="link-text">Trails</span>
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link to="/AdminPanel" className="nav-link">
                 <span className="link-text">Admin</span>
               </Link>
             </li>
+<<<<<<< HEAD
             <li className="nav-item">
               <Link to="/Shops" className="nav-link">
+=======
+
+            {/* <li className="nav-item">
+              <Link to="/UserPanel" className="nav-link">
+                <span className="link-text">User</span>
+              </Link>
+            </li> */}
+
+            <li className="shop-item">
+              <Link to="/Shops" className="shop-link">
+>>>>>>> e47a4c26103a7eca27ba37745c9bdfdb94a257d0
                 <span className="link-text">Bike Shops</span>
               </Link>
             </li>
@@ -58,6 +80,7 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
               </Link>
             </li>
             
+
           </ul>
         </nav>
         <div className="sidebar-route">
@@ -65,15 +88,27 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
             <Route exact path="/">
               {this.props.protectedViews()}
             </Route>
+            <Route exact path="/trails">
+              {this.props.protectedViewsTrails()}
+            </Route>
             <Route exact path="/AdminPanel">
               {this.props.protectedViewsAdmin()}
             </Route>
+
+            {/* <Route exact path="/UserPanel">
+              <UserPanel
+                token={this.props.token}
+                updateUsername={this.props.updateUsername}
+              />
+            </Route> */}
+
             <Route exact path="/Shops">
             <ShopIndex 
             token={this.props.token} 
             updateUsername={this.props.updateUsername}
             />
             </Route>
+
           </Switch>
         </div>
         {/* </div> */}
