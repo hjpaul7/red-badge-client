@@ -108,6 +108,7 @@ export default class App extends React.Component<{}, valueTypes> {
         token={this.updateToken}
         updateUsername={this.updateUsername}
         updateUserRole={this.updateUserRole}
+        updateMessage={this.updatedMessage}
       />
     );
   };
