@@ -9,6 +9,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Auth from "./auth/Auth";
 import TimeIndex from "./times/timeIndex";
 import Sidebar from "./components/site/Sidebar";
+import Navbar from "./home/Navbar";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
 
 
@@ -105,11 +106,13 @@ export default class App extends React.Component<{}, valueTypes> {
     return (
       <div className="App">
         <Router>
+          <Navbar clearToken={this.clearToken} />
           <Sidebar
             protectedViews={this.protectedViews}
             protectedViewsAdmin={this.protectedViewsAdmin}
             token={this.state.setToken}
             updateUsername={this.updateUsername}
+            clearToken={this.clearToken}
           />
         </Router>
       </div>

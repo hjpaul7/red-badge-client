@@ -1,5 +1,6 @@
 import React from "react";
-import { FormGroup, Label, Input, Form, Button } from "reactstrap";
+import { FormGroup, Label, Form } from "reactstrap";
+import { Button, Input } from "antd";
 
 type acceptedProps = {
   token: any;
@@ -46,14 +47,15 @@ export default class Signup extends React.Component<acceptedProps, valueTypes> {
   render() {
     return (
       <div>
-        <h1>Signup</h1>
+        <h3>Signup</h3>
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
             <Label htmlFor="username">
-              <h5>Username</h5>
+              <h4>Username</h4>
             </Label>
             <Input
               onChange={(e) => this.setState({ username: e.target.value })}
+              style={{ maxWidth: "250px" }}
               name="username"
               type="text"
               value={this.state.username}
@@ -64,10 +66,11 @@ export default class Signup extends React.Component<acceptedProps, valueTypes> {
           </FormGroup>
           <FormGroup>
             <Label htmlFor="password">
-              <h5>Password</h5>
+              <h4>Password</h4>
             </Label>
             <Input
               onChange={(e) => this.setState({ password: e.target.value })}
+              style={{ maxWidth: "250px" }}
               name="password"
               type="password"
               value={this.state.password}
@@ -77,7 +80,11 @@ export default class Signup extends React.Component<acceptedProps, valueTypes> {
             />
           </FormGroup>
 
-          <Button type="submit" color="primary">
+          <Button
+            htmlType="submit"
+            type="primary"
+            style={{ marginTop: "10px" }}
+          >
             Sign Up
           </Button>
         </Form>

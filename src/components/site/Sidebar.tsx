@@ -8,6 +8,7 @@ type acceptedProps = {
   updateUsername: any;
   protectedViews: any;
   protectedViewsAdmin: any;
+  clearToken: any;
 };
 
 export default class Sidebar extends React.Component<acceptedProps, {}> {
