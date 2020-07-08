@@ -1,6 +1,7 @@
 import React from "react";
-import { Container } from "@material-ui/core";
+import { Form, FormGroup, Label, Container, Row, Col } from "reactstrap";
 
+import { Button, Input } from "antd";
 
 type acceptedProps = {
     token: any;
@@ -25,8 +26,12 @@ export default class shopCreate extends React.Component <acceptedProps, valueTyp
             hours: "",
         };
     }
+    componentWillMount() {
+        console.log("Shop Create Mounted")
+    }
 
     handleSubmit = (event: any) => {
+        event.preventDefault();
         fetch(`http://localhost:4000/shop/`, {
             method: "POST",
             body: JSON.stringify({
@@ -42,11 +47,12 @@ export default class shopCreate extends React.Component <acceptedProps, valueTyp
         })
         .then((res) => res.json())
         .then((logData) => {
+          console.log(logData);
             this.setState({
-                nameOfShop: this.state.nameOfShop,
-                address: this.state.address,
-                closestTrail: this.state.closestTrail,
-                hours: this.state.hours,
+                nameOfShop: "",
+                address: "",
+                closestTrail: "", 
+                hours: "",
             });
             this.props.getShops();
         });
@@ -57,10 +63,42 @@ export default class shopCreate extends React.Component <acceptedProps, valueTyp
     render () {
         return (
             <Container>
-                <h1>Closest Shop to you</h1>
-                <hr/>
-                {/* hours is the only thing we are allowing to be modified */}
-            </Container>
+        <h2
+          style={{
+            textAlign: "center",
+            letterSpacing: "1px",
+            marginTop: "5px",
+          }}
+        >
+          Add Hours
+        </h2>
+        <Form onSubmit={this.handleSubmit} style={{ marginBottom: "40px" }}>
+          <Row>
+            <Col md="6">
+              <FormGroup>
+                <Label htmlFor="hours" />
+                <h5 style={{ letterSpacing: "1px" }}>Hours</h5>
+                <Input
+                  name="hours"
+                  style={{ maxWidth: "250px" }}
+                  value={this.state.hours}
+                  required
+                  onChange={(e) =>
+                    this.setState({ hours: e.target.value })
+                  }
+                />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{ marginTop: "10px" }}
+          >
+            Submit
+          </Button>
+        </Form>
+      </Container>
         )
     }
 }
