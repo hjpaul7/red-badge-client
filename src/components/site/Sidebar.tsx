@@ -49,6 +49,7 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
 
             <li className="shop-item">
               <Link to="/Shops" className="shop-link">
+
                 <span className="link-text">Bike Shops</span>
               </Link>
             </li>
