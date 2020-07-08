@@ -10,6 +10,7 @@ import Auth from "./auth/Auth";
 import TimeIndex from "./times/timeIndex";
 import Sidebar from "./components/site/Sidebar";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
+import TrailIndex from "./trails/trailIndex";
 
 type valueTypes = {
   username: any;
@@ -84,6 +85,22 @@ export default class App extends React.Component<{}, valueTypes> {
     );
   };
 
+  protectedViewsTrails = () => {
+    return this.state.setToken === localStorage.getItem("token")
+    ? (
+      <TrailIndex
+        token={this.state.setToken}
+        updateUsername={this.updateUsername}
+      />
+    ) : (
+      <Auth
+        token={this.updateToken}
+        updateUsername={this.updateUsername}
+        updateUserRole={this.updateUserRole}
+      />
+    );
+  };
+
   protectedViewsAdmin = () => {
     return localStorage.getItem("userRole") === "Admin" ? (
       <AdminPanel
@@ -106,6 +123,7 @@ export default class App extends React.Component<{}, valueTypes> {
         <Router>
           <Sidebar
             protectedViews={this.protectedViews}
+            protectedViewsTrails={this.protectedViewsTrails}
             protectedViewsAdmin={this.protectedViewsAdmin}
             token={this.state.setToken}
             updateUsername={this.updateUsername}
