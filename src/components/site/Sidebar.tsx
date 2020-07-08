@@ -5,7 +5,6 @@ import "./Sidebar.css";
 
 import ShopIndex from "../../shops/shopIndex";
 
-
 type acceptedProps = {
   token: any;
   updateUsername: any;
@@ -24,22 +23,6 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
   render() {
     return (
       <>
-        {/* <div className="sidebar_all">
-          <div className="sidebar">
-            <div className="sidebar-list-styling">
-              <hr />
-              <ul className="sidebar-list list-unstyled">
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <hr />
-                <li>
-                  <Link to="/AdminPanel">Admin Panel</Link>
-                </li>
-                <hr />
-              </ul>
-            </div>
-          </div> */}
         <nav className="navbar">
           <ul className="navbar-nav">
             <li className="nav-item">
@@ -69,13 +52,6 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
                 <span className="link-text">Bike Shops</span>
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/AdminPanel" className="nav-link">
-                <span className="link-text">Logout</span>
-              </Link>
-            </li>
-            
-
           </ul>
         </nav>
         <div className="sidebar-route">
@@ -98,12 +74,11 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
             </Route> */}
 
             <Route exact path="/Shops">
-            <ShopIndex 
-            token={this.props.token} 
-            updateUsername={this.props.updateUsername}
-            />
+              <ShopIndex
+                token={this.props.token}
+                updateUsername={this.props.updateUsername}
+              />
             </Route>
-
           </Switch>
         </div>
         {/* </div> */}

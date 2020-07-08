@@ -4,16 +4,15 @@ import ShopTable from "./shopTable";
 import ShopEdit from "./shopEdit";
 import { Container, Row, Col } from "reactstrap";
 
-type acceptedProps ={
-    token: any;
-    updateUsername: any;
+type acceptedProps = {
+  token: any;
+  updateUsername: any;
 };
 
 type valueTypes ={
     shops: [];
     updateActive: boolean;
     shopToUpdate: string;
-   
 };
 
 export default class shopIndex extends React.Component < acceptedProps, valueTypes > {
@@ -110,3 +109,4 @@ export default class shopIndex extends React.Component < acceptedProps, valueTyp
         );
     }
 }
+
