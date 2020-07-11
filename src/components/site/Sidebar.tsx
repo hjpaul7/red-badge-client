@@ -36,8 +36,8 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/trails" className="nav-link">
-                <span className="link-text">Trails</span>
+              <Link to="/times" className="nav-link">
+                <span className="link-text">Trail Times</span>
               </Link>
             </li>
 
@@ -57,10 +57,10 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
         <div className="sidebar-route">
           <Switch>
             <Route exact path="/">
-              {this.props.protectedViews()}
-            </Route>
-            <Route exact path="/trails">
               {this.props.protectedViewsTrails()}
+            </Route>
+            <Route exact path="/times">
+              {this.props.protectedViews()}
             </Route>
             <Route exact path="/AdminPanel">
               {this.props.protectedViewsAdmin()}

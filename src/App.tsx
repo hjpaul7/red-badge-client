@@ -13,7 +13,6 @@ import Navbar from "./home/Navbar";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
 import TrailIndex from "./trails/trailIndex";
 
-
 type valueTypes = {
   username: any;
   setUsername: any;
@@ -97,8 +96,7 @@ export default class App extends React.Component<{}, valueTypes> {
   };
 
   protectedViewsTrails = () => {
-    return this.state.setToken === localStorage.getItem("token")
-    ? (
+    return this.state.setToken === localStorage.getItem("token") ? (
       <TrailIndex
         token={this.state.setToken}
         updateUsername={this.updateUsername}

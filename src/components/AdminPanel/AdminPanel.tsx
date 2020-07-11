@@ -40,7 +40,7 @@ export default class AdminPanel extends React.Component<
       password: "",
       usersToUpdate: {},
       updateActive: false,
-      visible: this.state,
+      visible: true,
     };
   }
 
