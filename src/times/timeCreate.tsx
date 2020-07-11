@@ -1,7 +1,7 @@
 import React from "react";
-import { Form, FormGroup, Label, Container, Row, Col } from "reactstrap";
+import { Form, FormGroup, Label, Container } from "reactstrap";
 
-import { Button, Input } from "antd";
+import { Button, Input, Row, Col } from "antd";
 
 type acceptedProps = {
   token: any;
@@ -78,13 +78,13 @@ export default class TimeCreate extends React.Component<
         </h2>
         <Form onSubmit={this.handleSubmit} style={{ marginBottom: "40px" }}>
           <Row>
-            <Col md="6">
+            <Col span="24">
               <FormGroup>
                 <Label htmlFor="name of park" />
                 <h5 style={{ letterSpacing: "1px" }}>Name of Park</h5>
                 <Input
                   name="nameOfPark"
-                  style={{ maxWidth: "250px" }}
+                  style={{ width: "250px" }}
                   value={this.state.nameOfPark}
                   required
                   onChange={(e) =>
@@ -93,26 +93,26 @@ export default class TimeCreate extends React.Component<
                 />
               </FormGroup>
             </Col>
-            <Col md="6">
+            <Col span="24">
               <FormGroup>
                 <Label htmlFor="route" />
                 <h5 style={{ letterSpacing: "1px" }}>Route</h5>
                 <Input
                   name="route"
-                  style={{ maxWidth: "250px" }}
+                  style={{ width: "250px" }}
                   value={this.state.route}
                   required
                   onChange={(e) => this.setState({ route: e.target.value })}
                 />
               </FormGroup>
             </Col>
-            <Col md="4">
+            <Col span="24">
               <FormGroup>
                 <Label htmlFor="length" />
                 <h5 style={{ letterSpacing: "1px" }}>Length</h5>
                 <Input
                   name="length"
-                  style={{ maxWidth: "250px" }}
+                  style={{ width: "250px" }}
                   value={this.state.length}
                   required
                   onChange={(e) => this.setState({ length: e.target.value })}
@@ -120,13 +120,13 @@ export default class TimeCreate extends React.Component<
               </FormGroup>
             </Col>
 
-            <Col md="4">
+            <Col span="24">
               <FormGroup>
                 <Label htmlFor="time" />
                 <h5 style={{ letterSpacing: "1px" }}>Time</h5>
                 <Input
                   name="time"
-                  style={{ maxWidth: "250px" }}
+                  style={{ width: "250px" }}
                   value={this.state.time}
                   required
                   onChange={(e) => this.setState({ time: e.target.value })}

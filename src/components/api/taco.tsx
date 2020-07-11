@@ -68,6 +68,8 @@ export default class Taco extends React.Component<{}, valueTypes> {
           title="Let's Taco, bruh"
           visible={this.state.visible}
           onOk={this.getTaco}
+          okText="Taco me brother"
+          cancelText="Nah I'm done"
           onCancel={this.handleCancel}
         >
           <Space direction="vertical">
