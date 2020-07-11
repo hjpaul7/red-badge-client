@@ -4,6 +4,7 @@ import "./Sidebar.css";
 // import UserPanel from "../UserPanel/UserPanel";
 
 import ShopIndex from "../../shops/shopIndex";
+import Taco from "../../components/api/taco";
 
 type acceptedProps = {
   token: any;
@@ -52,6 +53,11 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
                 <span className="link-text">Bike Shops</span>
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/Taco" className="nav-link">
+                <span className="link-text">Let's Taco</span>
+              </Link>
+            </li>
           </ul>
         </nav>
         <div className="sidebar-route">
@@ -78,6 +84,9 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
                 token={this.props.token}
                 updateUsername={this.props.updateUsername}
               />
+            </Route>
+            <Route exact path="/Taco">
+              <Taco />
             </Route>
           </Switch>
         </div>
