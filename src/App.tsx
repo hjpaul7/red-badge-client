@@ -12,6 +12,7 @@ import Sidebar from "./components/site/Sidebar";
 import Navbar from "./home/Navbar";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
 import TrailIndex from "./trails/trailIndex";
+import ShopIndex from "./shops/shopIndex";
 
 type valueTypes = {
   username: any;
@@ -111,6 +112,22 @@ export default class App extends React.Component<{}, valueTypes> {
     );
   };
 
+  protectedViewsShops = () => {
+    return this.state.setToken === localStorage.getItem("token") ? (
+      <ShopIndex
+        token={this.state.setToken}
+        updateUsername={this.updateUsername}
+      />
+    ) : (
+      <Auth
+        token={this.updateToken}
+        updateUsername={this.updateUsername}
+        updateUserRole={this.updateUserRole}
+        updateMessage={this.updatedMessage}
+      />
+    );
+  };
+
   protectedViewsAdmin = () => {
     return localStorage.getItem("userRole") === "Admin" ? (
       <AdminPanel
@@ -136,6 +153,7 @@ export default class App extends React.Component<{}, valueTypes> {
           <Sidebar
             protectedViews={this.protectedViews}
             protectedViewsTrails={this.protectedViewsTrails}
+            protectedViewsShops={this.protectedViewsShops}
             protectedViewsAdmin={this.protectedViewsAdmin}
             token={this.state.setToken}
             updateUsername={this.updateUsername}

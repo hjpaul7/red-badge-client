@@ -3,7 +3,6 @@ import { Route, Link, Switch } from "react-router-dom";
 import "./Sidebar.css";
 // import UserPanel from "../UserPanel/UserPanel";
 
-import ShopIndex from "../../shops/shopIndex";
 import Taco from "../../components/api/taco";
 
 type acceptedProps = {
@@ -12,6 +11,7 @@ type acceptedProps = {
   protectedViews: any;
   protectedViewsAdmin: any;
   protectedViewsTrails: any;
+  protectedViewsShops: any;
   clearToken: any;
 };
 
@@ -19,6 +19,18 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
   constructor(props: acceptedProps) {
     super(props);
     this.state = {};
+  }
+
+  adminPortal() {
+    if (localStorage.getItem("userRole") === "Admin") {
+      return (
+        <li className="nav-item">
+          <Link to="/AdminPanel" className="nav-link">
+            <span className="link-text">Admin</span>
+          </Link>
+        </li>
+      );
+    }
   }
 
   render() {
@@ -31,11 +43,12 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
                 <span className="link-text">Home</span>
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link to="/AdminPanel" className="nav-link">
                 <span className="link-text">Admin</span>
               </Link>
-            </li>
+            </li> */}
+            {this.adminPortal()}
             <li className="nav-item">
               <Link to="/times" className="nav-link">
                 <span className="link-text">Trail Times</span>
@@ -80,10 +93,11 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
             </Route> */}
 
             <Route exact path="/Shops">
-              <ShopIndex
+              {this.props.protectedViewsShops()}
+              {/* <ShopIndex
                 token={this.props.token}
                 updateUsername={this.props.updateUsername}
-              />
+              /> */}
             </Route>
             <Route exact path="/Taco">
               <Taco />
