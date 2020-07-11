@@ -25,6 +25,7 @@ type valueTypes = {
   route: string;
   length: string;
   time: string;
+  visible: boolean | any;
 };
 
 export default class TimeTable extends React.Component<
@@ -38,6 +39,7 @@ export default class TimeTable extends React.Component<
       route: "",
       length: "",
       time: "",
+      visible: true,
     };
   }
 

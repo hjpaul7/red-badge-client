@@ -1,15 +1,15 @@
 import React from "react";
 
-import {
-  Form,
-  FormGroup,
-  Label,
-  Modal,
-  ModalHeader,
-  ModalBody,
-} from "reactstrap";
+// import {
+//   Form,
+//   FormGroup,
+//   Label,
+//   Modal,
+//   ModalHeader,
+//   ModalBody,
+// } from "reactstrap";
 
-import { Button, Input } from "antd";
+import { Input, Space, Button, Modal } from "antd";
 
 type acceptedProps = {
   token: any;
@@ -24,6 +24,7 @@ type valueTypes = {
   route: string;
   length: string;
   time: string;
+  visible: boolean | any;
 };
 
 export default class TimeEdit extends React.Component<
@@ -37,8 +38,23 @@ export default class TimeEdit extends React.Component<
       route: "",
       length: "",
       time: "",
+      visible: true,
     };
   }
+
+  handleOk = (e: any) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
+
+  handleCancel = (e: any) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
 
   timeUpdate = (event: any) => {
     event.preventDefault();
@@ -64,6 +80,49 @@ export default class TimeEdit extends React.Component<
     return (
       <>
         <Modal
+          title="Edit Trail Time"
+          visible={this.state.visible}
+          onOk={this.timeUpdate}
+          onCancel={this.handleCancel}
+        >
+          <p>Edit Time:</p>
+          <Space direction="vertical">
+            <Input
+              style={{ marginLeft: "7px", marginBottom: "5px" }}
+              name="name of park"
+              value={this.state.nameOfPark}
+              onChange={(e) => this.setState({ nameOfPark: e.target.value })}
+            />
+          </Space>
+          <p>Edit Route:</p>
+          <Space direction="vertical">
+            <Input
+              style={{ marginLeft: "10px" }}
+              name="route"
+              value={this.state.route}
+              onChange={(e) => this.setState({ route: e.target.value })}
+            />
+          </Space>
+          <p>Edit Length:</p>
+          <Space direction="vertical">
+            <Input
+              style={{ marginLeft: "10px" }}
+              name="length"
+              value={this.state.length}
+              onChange={(e) => this.setState({ length: e.target.value })}
+            />
+          </Space>
+          <p>Edit Time:</p>
+          <Space direction="vertical">
+            <Input
+              style={{ marginLeft: "10px" }}
+              name="time"
+              value={this.state.time}
+              onChange={(e) => this.setState({ time: e.target.value })}
+            />
+          </Space>
+        </Modal>
+        {/* <Modal
           isOpen={true}
           style={{
             backgroundColor: "lightgray",
@@ -126,7 +185,7 @@ export default class TimeEdit extends React.Component<
               </Button>
             </Form>
           </ModalBody>
-        </Modal>
+        </Modal> */}
       </>
     );
   }
