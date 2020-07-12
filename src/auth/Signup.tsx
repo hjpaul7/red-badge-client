@@ -70,7 +70,7 @@ export default class Signup extends React.Component<acceptedProps, valueTypes> {
             <Label htmlFor="password">
               <h4>Password</h4>
             </Label>
-            <Input
+            <Input.Password
               onChange={(e) => this.setState({ password: e.target.value })}
               style={{ maxWidth: "250px" }}
               name="password"
