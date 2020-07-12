@@ -137,6 +137,7 @@ export default class AdminPanel extends React.Component<
           marginRight: "20px",
           marginLeft: "10%",
           maxWidth: "75%",
+          height: "100vh",
         }}
       >
         <div

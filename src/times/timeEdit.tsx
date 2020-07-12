@@ -85,7 +85,7 @@ export default class TimeEdit extends React.Component<
           onOk={this.timeUpdate}
           onCancel={this.handleCancel}
         >
-          <p>Edit Time:</p>
+          <p>Edit Name of Park:</p>
           <Space direction="vertical">
             <Input
               style={{ marginLeft: "7px", marginBottom: "5px" }}
