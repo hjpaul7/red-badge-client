@@ -29,6 +29,24 @@ export default class TrailIndex extends React.Component<
     };
   }
 
+  welcomeMessage() {
+    return localStorage.getItem("message") === null ? (
+      <h2>Please Register or Login.</h2>
+    ) : localStorage.getItem("message") === "You have succesfully logged in" ? (
+      <h2>
+        <b>Welcome back, </b>
+        {localStorage.getItem("username")}
+      </h2>
+    ) : localStorage.getItem("message") === "user created" ? (
+      <h2>
+        <b>Welcome, </b>
+        {localStorage.getItem("username")}
+      </h2>
+    ) : (
+      "null"
+    );
+  }
+
   editUpdateTrail = (trail: string) => {
     this.setState({ trailToUpdate: trail });
     console.log(trail);
@@ -76,6 +94,7 @@ export default class TrailIndex extends React.Component<
           maxWidth: "75%",
         }}
       >
+        {this.welcomeMessage()}
         <Container>
           <Row>
             <Col md="12">
