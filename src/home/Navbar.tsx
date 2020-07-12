@@ -47,7 +47,7 @@ export default class Navbar extends React.Component<acceptedProps, {}> {
 
   render() {
     return (
-      <AppBar position="static" style={{ backgroundColor: "gray" }}>
+      <AppBar position="static" style={{ backgroundColor: "#23232e" }}>
         <Toolbar className="classes.color">
           <Typography
             variant="h6"
