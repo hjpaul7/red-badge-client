@@ -74,7 +74,7 @@ export default class TimeCreate extends React.Component<
             marginTop: "5px",
           }}
         >
-          Add Time
+          Add Your Trail Time
         </h2>
         <Form onSubmit={this.handleSubmit} style={{ marginBottom: "40px" }}>
           <Row>
