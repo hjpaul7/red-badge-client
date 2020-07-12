@@ -23,6 +23,7 @@ type valueTypes = {
   users: [];
   username: string;
   password: string;
+  userRole: string;
   usersToUpdate: {} | [];
   updateActive: boolean;
   visible: boolean | any;
@@ -38,6 +39,7 @@ export default class AdminPanel extends React.Component<
       users: [],
       username: "",
       password: "",
+      userRole: "",
       usersToUpdate: {},
       updateActive: false,
       visible: true,
@@ -96,6 +98,7 @@ export default class AdminPanel extends React.Component<
       body: JSON.stringify({
         username: this.state.username,
         password: this.state.password,
+        userRole: this.state.userRole,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -106,6 +109,7 @@ export default class AdminPanel extends React.Component<
         this.setState({
           username: "",
           password: "",
+          userRole: "",
         });
         this.getUsers();
       });
@@ -203,6 +207,24 @@ export default class AdminPanel extends React.Component<
                   required
                   pattern="(?=.*[a-z]).{5,}"
                   title="Password must be at least 5 characters"
+                />
+              </Space>
+            </FormGroup>
+
+            <FormGroup>
+              <Space direction="vertical">
+                <Label htmlFor="userRole">
+                  <h4>UserRole</h4>
+                  <br />
+                </Label>
+                <Input
+                  placeholder="user or Admin"
+                  onChange={(e) => this.setState({ userRole: e.target.value })}
+                  name="userRole"
+                  style={{ marginTop: "-30px" }}
+                  value={this.state.userRole}
+                  required
+                  title="Must be either user or Admin. Capitalization matters."
                 />
               </Space>
             </FormGroup>
