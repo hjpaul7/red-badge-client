@@ -102,7 +102,7 @@ export default class TimeIndex extends React.Component<
     return (
       <div
         style={{
-          backgroundColor: "#23232e",
+          backgroundColor: "lightgray",
           // opacity: "0.8",
           borderRadius: "10px",
           paddingTop: "50px",
