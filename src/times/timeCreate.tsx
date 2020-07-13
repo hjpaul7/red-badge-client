@@ -66,7 +66,7 @@ export default class TimeCreate extends React.Component<
 
   render() {
     return (
-      <Container>
+      <Container style={{ color: "white" }}>
         <h2
           style={{
             textAlign: "center",
@@ -79,7 +79,7 @@ export default class TimeCreate extends React.Component<
         <Form onSubmit={this.handleSubmit} style={{ marginBottom: "40px" }}>
           <Row>
             <Col span="24">
-              <FormGroup>
+              <FormGroup style={{ color: "white" }}>
                 <Label htmlFor="name of park" />
                 <h5 style={{ letterSpacing: "1px" }}>Name of Park</h5>
                 <Input

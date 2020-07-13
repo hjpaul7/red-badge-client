@@ -213,7 +213,7 @@ export default class AdminPanel extends React.Component<
               </Space>
             </FormGroup>
 
-            <FormGroup style={{ marginTop: "10px" }}>
+            <FormGroup style={{ marginTop: "20px" }}>
               <Space direction="vertical">
                 <Label htmlFor="userRole">
                   <h4>UserRole - "user" or "Admin"</h4>
