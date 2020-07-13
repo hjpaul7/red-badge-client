@@ -18,7 +18,6 @@ type acceptedProps = {
   shops: [];
   editUpdateShop: any;
   updateOn: any;
- 
 };
 
 type valueTypes = {
@@ -26,6 +25,7 @@ type valueTypes = {
   address: string;
   closestTrail: string;
   hours: string;
+  visible: boolean | any;
 };
 
 export default class TimeTable extends React.Component<
@@ -39,13 +39,13 @@ export default class TimeTable extends React.Component<
       address: "",
       closestTrail: "",
       hours: "",
+      visible: true,
     };
   }
 
   componentWillMount() {
     console.log("Shop Table Mounted");
   }
-
 
   deleteShop = (shops: any) => {
     fetch(`http://localhost:4000/shop/${shops.id}`, {
@@ -129,8 +129,6 @@ export default class TimeTable extends React.Component<
           </TableBody>
         </Table>
       </TableContainer>
-    
     );
   }
-  
 }

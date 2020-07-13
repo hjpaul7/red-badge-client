@@ -1,14 +1,7 @@
 import React from "react";
-import {
-  Form,
-  FormGroup,
-  Label,
-  Modal,
-  ModalHeader,
-  ModalBody,
-} from "reactstrap";
+import { FormGroup, Label, Form } from "reactstrap";
 import * as bcrypt from "bcryptjs";
-import { Input, Space, Button } from "antd";
+import { Input, Space, Button, Modal } from "antd";
 
 const salt = bcrypt.genSaltSync(10);
 
@@ -23,6 +16,7 @@ type valueTypes = {
   editUsername: string | any;
   editPassword: string | any;
   editUserRole: string | any;
+  visible: boolean | any;
 };
 
 export default class UserEdit extends React.Component<
@@ -35,12 +29,33 @@ export default class UserEdit extends React.Component<
       editUsername: this.props.usersToUpdate.username,
       editPassword: this.props.usersToUpdate.password,
       editUserRole: this.props.usersToUpdate.userRole,
+      visible: true,
     };
   }
 
   componentWillMount() {
     console.log("User Edit Mounted");
   }
+
+  // showModal = () => {
+  //   this.setState({
+  //     visible: true,
+  //   });
+  // };
+
+  handleOk = (e: any) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
+
+  handleCancel = (e: any) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
 
   usersUpdate = (event: any) => {
     event.preventDefault();
@@ -64,72 +79,48 @@ export default class UserEdit extends React.Component<
 
   render() {
     return (
-      <Modal
-        isOpen={true}
-        style={{
-          backgroundColor: "lightgray",
-          // opacity: "0.8",
-          borderRadius: "10px",
-          paddingTop: "10px",
-          paddingLeft: "20px",
-          paddingBottom: "10px",
-          marginTop: "50px",
-          marginRight: "20px",
-          marginLeft: "10%",
-          maxWidth: "75%",
-        }}
-      >
-        <ModalHeader>Edit User</ModalHeader>
-        <hr />
-        <ModalBody>
-          <Form onSubmit={this.usersUpdate}>
-            <FormGroup>
-              <Label htmlFor="username">Edit Username:</Label>
-              <Space direction="vertical">
-                <Input
-                  style={{ marginLeft: "7px", marginBottom: "5px" }}
-                  name="name"
-                  value={this.state.editUsername}
-                  onChange={(e) =>
-                    this.setState({ editUsername: e.target.value })
-                  }
-                />
-              </Space>
-            </FormGroup>
-            <FormGroup>
-              <Label htmlFor="password">Edit Password:</Label>
-              <Space direction="vertical">
-                <Input
-                  style={{ marginLeft: "10px" }}
-                  name="password"
-                  value={this.state.editPassword}
-                  onChange={(e) =>
-                    this.setState({ editPassword: e.target.value })
-                  }
-                />
-              </Space>
-            </FormGroup>
-
-            <FormGroup>
-              <Label htmlFor="userRole">Edit UserRole:</Label>
-              <Space direction="vertical">
-                <Input
-                  style={{ marginLeft: "10px" }}
-                  name="userRole"
-                  value={this.state.editUserRole}
-                  onChange={(e) =>
-                    this.setState({ editUserRole: e.target.value })
-                  }
-                />
-              </Space>
-            </FormGroup>
-
-            <Button htmlType="submit" type="primary">
-              Confirm
-            </Button>
-          </Form>
-        </ModalBody>
-      </Modal>
+      <div>
+        {/* <Button type="primary" onClick={this.showModal}>
+          Open Modal
+        </Button> */}
+        <Modal
+          title="Edit User"
+          visible={this.state.visible}
+          onOk={this.usersUpdate}
+          onCancel={this.handleCancel}
+        >
+          <p>Edit Username:</p>
+          <Space direction="vertical">
+            <Input
+              style={{ marginLeft: "7px", marginBottom: "5px" }}
+              name="name"
+              required
+              value={this.state.editUsername}
+              onChange={(e) => this.setState({ editUsername: e.target.value })}
+            />
+          </Space>
+          <p>Edit Password</p>
+          <Space direction="vertical">
+            <Input
+              style={{ marginLeft: "10px", marginBottom: "10px" }}
+              name="password"
+              required
+              value={this.state.editPassword}
+              onChange={(e) => this.setState({ editPassword: e.target.value })}
+            />
+          </Space>
+          <p>Edit UserRole</p>
+          <Space direction="vertical">
+            <Input
+              style={{ marginLeft: "10px" }}
+              name="userRole"
+              required
+              value={this.state.editUserRole}
+              onChange={(e) => this.setState({ editUserRole: e.target.value })}
+            />
+          </Space>
+        </Modal>
+      </div>
     );
   }
 }

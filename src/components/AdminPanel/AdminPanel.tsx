@@ -23,6 +23,7 @@ type valueTypes = {
   users: [];
   username: string;
   password: string;
+  userRole: string;
   usersToUpdate: {} | [];
   updateActive: boolean;
   visible: boolean | any;
@@ -38,9 +39,10 @@ export default class AdminPanel extends React.Component<
       users: [],
       username: "",
       password: "",
+      userRole: "",
       usersToUpdate: {},
       updateActive: false,
-      visible: this.state,
+      visible: true,
     };
   }
 
@@ -96,6 +98,7 @@ export default class AdminPanel extends React.Component<
       body: JSON.stringify({
         username: this.state.username,
         password: this.state.password,
+        userRole: this.state.userRole,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -106,6 +109,7 @@ export default class AdminPanel extends React.Component<
         this.setState({
           username: "",
           password: "",
+          userRole: "",
         });
         this.getUsers();
       });
@@ -133,6 +137,7 @@ export default class AdminPanel extends React.Component<
           marginRight: "20px",
           marginLeft: "10%",
           maxWidth: "75%",
+          height: "100vh",
         }}
       >
         <div
@@ -158,6 +163,7 @@ export default class AdminPanel extends React.Component<
               number.
             </li>
             <li>Password must be at least 4 characters.</li>
+            <li>UserRole must be specified as either "user" or "Admin".</li>
           </ul>
 
           <Form
@@ -207,6 +213,24 @@ export default class AdminPanel extends React.Component<
               </Space>
             </FormGroup>
 
+            <FormGroup style={{ marginTop: "10px" }}>
+              <Space direction="vertical">
+                <Label htmlFor="userRole">
+                  <h4>UserRole - "user" or "Admin"</h4>
+                  <br />
+                </Label>
+                <Input
+                  placeholder="user or Admin"
+                  onChange={(e) => this.setState({ userRole: e.target.value })}
+                  name="userRole"
+                  style={{ marginTop: "-30px" }}
+                  value={this.state.userRole}
+                  required
+                  title="Must be either user or Admin. Capitalization matters."
+                />
+              </Space>
+            </FormGroup>
+
             <Button
               htmlType="submit"
               type="primary"
@@ -222,14 +246,14 @@ export default class AdminPanel extends React.Component<
             borderRadius: "10px",
             overflow: "scroll",
             overflowX: "hidden",
-            maxHeight: "600px",
+            // maxHeight: "600px",
             marginBottom: "40px",
             marginLeft: "50%",
             paddingTop: "10px",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            maxWidth: "850px",
+            maxWidth: "450px",
           }}
         >
           <Table aria-label="simple table">
@@ -238,9 +262,9 @@ export default class AdminPanel extends React.Component<
                 <TableCell component="th" scope="row">
                   <b>Username</b>
                 </TableCell>
-                <TableCell align="right">
+                {/* <TableCell align="right">
                   <b>Password</b>
-                </TableCell>
+                </TableCell> */}
                 <TableCell align="right">
                   <b>Update or Delete</b>
                 </TableCell>
@@ -252,7 +276,7 @@ export default class AdminPanel extends React.Component<
                   <TableCell component="th" scope="row">
                     {users.username}
                   </TableCell>
-                  <TableCell align="right">{users.password}</TableCell>
+                  {/* <TableCell align="right">{users.password}</TableCell> */}
                   <TableCell align="right">
                     <Button
                       type="link"
