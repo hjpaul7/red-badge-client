@@ -71,7 +71,12 @@ export default class Taco extends React.Component<{}, valueTypes> {
   render() {
     return (
       <div>
-        <h4>Notice me Senpai, notice me.</h4>
+        <h1>Notice me Senpai, notice me.</h1>
+        <img
+          src="https://i0.wp.com/russianmachineneverbreaks.com/wp-content/uploads/2018/05/Screen-Shot-2015-08-25-at-10.52.29-PM.png?fit=1024%2C470&ssl=1"
+          alt="notice me"
+          style={{ borderRadius: "100%" }}
+        />
         <Modal
           title="Let's Taco, bruh"
           visible={this.state.visible}
