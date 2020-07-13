@@ -71,12 +71,13 @@ export default class Taco extends React.Component<{}, valueTypes> {
   render() {
     return (
       <div>
+        <h4>Notice me Senpai, notice me.</h4>
         <Modal
           title="Let's Taco, bruh"
           visible={this.state.visible}
           onOk={this.getTaco}
           okText="Taco me brother"
-          cancelText="Nah I'm done Sempai"
+          cancelText="Nah I'm done Senpai"
           onCancel={this.handleCancel}
         >
           <Space direction="vertical">
