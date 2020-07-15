@@ -28,7 +28,7 @@ type valueTypes = {
   hours: string;
 };
 
-export default class TimeTable extends React.Component<
+export default class ShopTable extends React.Component<
   acceptedProps,
   valueTypes
 > {
