@@ -4,6 +4,7 @@ import ShopTable from "./shopTable";
 import ShopEdit from "./shopEdit";
 import { Container, Row, Col } from "reactstrap";
 
+
 type acceptedProps = {
   token: any;
   updateUsername: any;
