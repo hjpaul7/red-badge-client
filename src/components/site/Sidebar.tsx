@@ -4,6 +4,7 @@ import "./Sidebar.css";
 // import UserPanel from "../UserPanel/UserPanel";
 
 import Taco from "../../components/api/taco";
+import Bored from "../../components/apiJustin/bored";
 
 type acceptedProps = {
   token: any;
@@ -97,6 +98,11 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
                 <span className="link-text">Let's Taco</span>
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/Bored" className="nav-link">
+                <span className="link-text">If You're Bored</span>
+              </Link>
+            </li>
           </ul>
         </nav>
         <div className="sidebar-route">
@@ -127,6 +133,9 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
             </Route>
             <Route exact path="/Taco">
               <Taco />
+            </Route>
+            <Route exact path="/Bored">
+              <Bored />
             </Route>
           </Switch>
         </div>
