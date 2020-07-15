@@ -42,7 +42,7 @@ export default class Bored extends React.Component<{}, valueTypes> {
     };
 
     getBored = () => {
-        fetch(`http://www.boredapi.com/api/activity/`)
+        fetch(`https://www.boredapi.com/api/activity/`)
             .then((res) => res.json())
             .then((json) => {
                 console.log(json);
@@ -61,7 +61,7 @@ export default class Bored extends React.Component<{}, valueTypes> {
         return(
             <div className="mainDiv">
                 <div className="card">
-                <Card title="The answer to your boredom" style={{ width: 300, marginTop: 200, backgroundColor: 'transparent', border: "3px solid white", borderRadius: "100%" }}>
+                <Card title="The answer to your boredom" style={{ width: 300, marginTop: 100, backgroundColor: 'transparent', border: "3px solid white", borderRadius: "100%" }}>
                     <Button type="primary" onClick={this.showModal}>
                         Find the answer
                     </Button>
