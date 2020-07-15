@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Link, Switch } from "react-router-dom";
 import "./Sidebar.css";
 // import UserPanel from "../UserPanel/UserPanel";
+import Jeopardy from './MichelleJeopardy/MichelleApi';
 
 import Taco from "../../components/api/taco";
 import Bored from "../../components/apiJustin/bored";
@@ -14,6 +15,7 @@ type acceptedProps = {
   protectedViewsTrails: any;
   protectedViewsShops: any;
   clearToken: any;
+  
 };
 
 export default class Sidebar extends React.Component<acceptedProps, {}> {
@@ -93,9 +95,15 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
                 <span className="link-text">Bike Shops</span>
               </Link>
             </li>
+
+            <li className="jeopardy-item">
+              <Link to="/Jeopardy" className="jeopardyapi-link">
+                <span className="link-text">Ask Trebek</span>
+
             <li className="nav-item">
               <Link to="/Taco" className="nav-link">
                 <span className="link-text">Let's Taco</span>
+
               </Link>
             </li>
             <li className="nav-item">
@@ -134,8 +142,17 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
             <Route exact path="/Taco">
               <Taco />
             </Route>
+
             <Route exact path="/Bored">
               <Bored />
+            </Route>
+
+            <Route exact path="/Jeopardy">
+              <Jeopardy 
+                token={this.props.token}
+                updateUsername={this.props.updateUsername}
+              />
+
             </Route>
           </Switch>
         </div>
