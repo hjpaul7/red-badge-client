@@ -1,0 +1,8 @@
+body{
+    background-image: url("../../assets/boredBulldog.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.card{
+    margin-left: 30%;
+}

@@ -5,6 +5,7 @@ import "./Sidebar.css";
 import Jeopardy from './MichelleJeopardy/MichelleApi';
 
 import Taco from "../../components/api/taco";
+import Bored from "../../components/apiJustin/bored";
 
 type acceptedProps = {
   token: any;
@@ -105,6 +106,11 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
 
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/Bored" className="nav-link">
+                <span className="link-text">If You're Bored</span>
+              </Link>
+            </li>
           </ul>
         </nav>
         <div className="sidebar-route">
@@ -136,11 +142,17 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
             <Route exact path="/Taco">
               <Taco />
             </Route>
+
+            <Route exact path="/Bored">
+              <Bored />
+            </Route>
+
             <Route exact path="/Jeopardy">
               <Jeopardy 
                 token={this.props.token}
                 updateUsername={this.props.updateUsername}
               />
+
             </Route>
           </Switch>
         </div>
