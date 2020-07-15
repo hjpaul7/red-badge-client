@@ -110,6 +110,7 @@ export default class TimeIndex extends React.Component<
           marginRight: "20px",
           marginLeft: "10%",
           maxWidth: "75%",
+          color: "white",
         }}
       >
         <Container>

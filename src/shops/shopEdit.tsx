@@ -1,15 +1,15 @@
 import React from "react";
 
-import {
-  Form,
-  FormGroup,
-  Label,
-  Modal,
-  ModalHeader,
-  ModalBody,
-} from "reactstrap";
+// import {
+//   Form,
+//   FormGroup,
+//   Label,
+//   Modal,
+//   ModalHeader,
+//   ModalBody,
+// } from "reactstrap";
 
-import { Button, Input } from "antd";
+import { Input, Space, Button, Modal } from "antd";
 
 type acceptedProps = {
   token: any;
@@ -20,24 +20,39 @@ type acceptedProps = {
 };
 
 type valueTypes = {
-
   hours: string;
+  visible: boolean | any;
 };
+
 
 export default class ShopEdit extends React.Component< acceptedProps, valueTypes > {
   constructor(props: acceptedProps) {
     super(props);
     this.state = {
       hours: "",
+      visible: true,
     };
   }
+
+  handleOk = (e: any) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
+
+  handleCancel = (e: any) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  };
 
   shopUpdate = (event: any) => {
     event.preventDefault();
     fetch(`http://localhost:4000/shop/${this.props.shopToUpdate.id}`, {
       method: "PUT",
       body: JSON.stringify({
-
         hours: this.state.hours,
       }),
       headers: new Headers({
@@ -54,6 +69,22 @@ export default class ShopEdit extends React.Component< acceptedProps, valueTypes
     return (
       <>
         <Modal
+          title="Edit Bike Shop Hours"
+          visible={this.state.visible}
+          onOk={this.shopUpdate}
+          onCancel={this.handleCancel}
+        >
+          <p>Edit Hours:</p>
+          <Space direction="vertical">
+            <Input
+              style={{ marginLeft: "7px", marginBottom: "5px" }}
+              name="hours"
+              value={this.state.hours}
+              onChange={(e) => this.setState({ hours: e.target.value })}
+            />
+          </Space>
+        </Modal>
+        {/* <Modal
           isOpen={true}
           style={{
             backgroundColor: "lightgray",
@@ -78,19 +109,16 @@ export default class ShopEdit extends React.Component< acceptedProps, valueTypes
                   name="hours"
                   style={{ maxWidth: "250px" }}
                   value={this.state.hours}
-                  onChange={(e) =>
-                    this.setState({ hours: e.target.value })
-                  }
+                  onChange={(e) => this.setState({ hours: e.target.value })}
                 />
               </FormGroup>
-              
 
               <Button htmlType="submit" type="primary">
                 Confirm
               </Button>
             </Form>
           </ModalBody>
-        </Modal>
+        </Modal> */}
       </>
     );
   }
