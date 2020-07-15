@@ -16,7 +16,7 @@ type valueTypes = {
     hours: string;
 };
 
-export default class shopCreate extends React.Component <acceptedProps, valueTypes > {
+export default class ShopCreate extends React.Component <acceptedProps, valueTypes > {
     constructor(props: acceptedProps) {
         super(props);
         this.state = {

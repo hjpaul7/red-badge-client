@@ -24,10 +24,8 @@ type valueTypes = {
   visible: boolean | any;
 };
 
-export default class shopEdit extends React.Component<
-  acceptedProps,
-  valueTypes
-> {
+
+export default class ShopEdit extends React.Component< acceptedProps, valueTypes > {
   constructor(props: acceptedProps) {
     super(props);
     this.state = {
