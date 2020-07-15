@@ -10,6 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import UserEdit from "./UserEdit";
 import { FormGroup, Label, Form } from "reactstrap";
 import { Input, Space, Button } from "antd";
+import APIURL from "../../helpers/environment";
 
 // test for github2
 
@@ -73,7 +74,7 @@ export default class AdminPanel extends React.Component<
   };
 
   getUsers = () => {
-    fetch(`http://localhost:4000/user/`, {
+    fetch(`${APIURL}/user/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -93,7 +94,7 @@ export default class AdminPanel extends React.Component<
 
   adminRegister = (event: any) => {
     event.preventDefault();
-    fetch(`http://localhost:4000/user/adminregister`, {
+    fetch(`${APIURL}/user/adminregister`, {
       method: "POST",
       body: JSON.stringify({
         username: this.state.username,
@@ -116,7 +117,7 @@ export default class AdminPanel extends React.Component<
   };
 
   deleteUser = (user: any) => {
-    fetch(`http://localhost:4000/user/${user.id}`, {
+    fetch(`${APIURL}/user/${user.id}`, {
       method: "DELETE",
       headers: new Headers({
         "Content-Type": "application/json",

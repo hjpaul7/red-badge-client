@@ -2,6 +2,7 @@ import React from "react";
 import { Form, FormGroup, Label, Container } from "reactstrap";
 
 import { Button, Input, Row, Col } from "antd";
+import APIURL from "../helpers/environment";
 
 type acceptedProps = {
   token: any;
@@ -37,7 +38,7 @@ export default class TimeCreate extends React.Component<
 
   handleSubmit = (event: any) => {
     event.preventDefault();
-    fetch(`http://localhost:4000/time/`, {
+    fetch(`${APIURL}/time/`, {
       method: "POST",
       body: JSON.stringify({
         nameOfPark: this.state.nameOfPark,

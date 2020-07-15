@@ -10,6 +10,7 @@ import React from "react";
 // } from "reactstrap";
 
 import { Input, Space, Button, Modal } from "antd";
+import APIURL from "../helpers/environment";
 
 type acceptedProps = {
   token: any;
@@ -58,7 +59,7 @@ export default class TrailEdit extends React.Component<
 
   TrailUpdate = (event: any) => {
     event.preventDefault();
-    fetch(`http://localhost:4000/trail/${this.props.trailsToUpdate.id}`, {
+    fetch(`${APIURL}/trail/${this.props.trailsToUpdate.id}`, {
       method: "PUT",
       body: JSON.stringify({
         nameOfPark: this.state.nameOfPark,

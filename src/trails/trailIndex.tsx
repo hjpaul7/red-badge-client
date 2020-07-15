@@ -4,6 +4,7 @@ import TrailCreate from "./trailCreate";
 import TrailEdit from "./trailEdit";
 
 import { Container, Row, Col } from "reactstrap";
+import APIURL from "../helpers/environment";
 
 type acceptedProps = {
   token: any;
@@ -67,7 +68,7 @@ export default class TrailIndex extends React.Component<
   }
 
   getTrails = () => {
-    fetch(`http://localhost:4000/trail/`, {
+    fetch(`${APIURL}/trail/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

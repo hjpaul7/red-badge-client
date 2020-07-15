@@ -9,6 +9,7 @@ import React from "react";
 // import Container from "@material-ui/core/Container";
 import { FormGroup, Label, Form } from "reactstrap";
 import { Button, Input } from "antd";
+import APIURL from "../helpers/environment";
 
 type acceptedProps = {
   token: any;
@@ -33,7 +34,7 @@ export default class Login extends React.Component<acceptedProps, valueTypes> {
 
   handleSubmit = (event: any) => {
     event.preventDefault();
-    fetch(`http://localhost:4000/user/login`, {
+    fetch(`${APIURL}/user/login`, {
       method: "POST",
       body: JSON.stringify({
         username: this.state.username,
