@@ -1,6 +1,7 @@
 import React from "react";
 import { FormGroup, Label, Form } from "reactstrap";
 import { Button, Input } from "antd";
+import APIURL from "../helpers/environment";
 
 type acceptedProps = {
   token: any;
@@ -25,7 +26,7 @@ export default class Signup extends React.Component<acceptedProps, valueTypes> {
 
   handleSubmit = (event: any) => {
     event.preventDefault();
-    fetch(`http://localhost:4000/user/register`, {
+    fetch(`${APIURL}/user/register`, {
       method: "POST",
       body: JSON.stringify({
         username: this.state.username,

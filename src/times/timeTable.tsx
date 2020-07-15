@@ -10,6 +10,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import "./TimeTable.css";
+import APIURL from "../helpers/environment";
 
 type acceptedProps = {
   token: any;
@@ -48,7 +49,7 @@ export default class TimeTable extends React.Component<
   }
 
   deleteTime = (time: any) => {
-    fetch(`http://localhost:4000/time/${time.id}`, {
+    fetch(`${APIURL}/time/${time.id}`, {
       method: "DELETE",
       headers: new Headers({
         "Content-Type": "application/json",

@@ -1,68 +1,70 @@
 import React from "react";
 import { Form, FormGroup, Label, Container, Row, Col } from "reactstrap";
+import APIURL from "../helpers/environment";
 
 import { Button, Input } from "antd";
 
 type acceptedProps = {
-    token: any;
-    updateUsername: any;
-    getShops: any;
+  token: any;
+  updateUsername: any;
+  getShops: any;
 };
 
 type valueTypes = {
-    nameOfShop: string;
-    address: string;
-    closestTrail: string;
-    hours: string;
+  nameOfShop: string;
+  address: string;
+  closestTrail: string;
+  hours: string;
 };
 
-export default class ShopCreate extends React.Component <acceptedProps, valueTypes > {
-    constructor(props: acceptedProps) {
-        super(props);
-        this.state = {
-            nameOfShop: "",
-            address: "",
-            closestTrail: "",
-            hours: "",
-        };
-    }
-    componentWillMount() {
-        console.log("Shop Create Mounted")
-    }
-
-    handleSubmit = (event: any) => {
-        event.preventDefault();
-        fetch(`http://localhost:4000/shop/`, {
-            method: "POST",
-            body: JSON.stringify({
-                nameOfShop: this.state.nameOfShop,
-                address: this.state.address,
-                closestTrail: this.state.closestTrail,
-                hours: this.state.hours,
-            }),
-            headers: new Headers ({
-                "Content-Type": "application/json",
-                Authorization: this.props.token,
-            }),
-        })
-        .then((res) => res.json())
-        .then((logData) => {
-          console.log(logData);
-            this.setState({
-                nameOfShop: "",
-                address: "",
-                closestTrail: "", 
-                hours: "",
-            });
-            this.props.getShops();
-        });
+export default class ShopCreate extends React.Component<
+  acceptedProps,
+  valueTypes
+> {
+  constructor(props: acceptedProps) {
+    super(props);
+    this.state = {
+      nameOfShop: "",
+      address: "",
+      closestTrail: "",
+      hours: "",
     };
+  }
+  componentWillMount() {
+    console.log("Shop Create Mounted");
+  }
 
-   
+  handleSubmit = (event: any) => {
+    event.preventDefault();
+    fetch(`${APIURL}/shop/`, {
+      method: "POST",
+      body: JSON.stringify({
+        nameOfShop: this.state.nameOfShop,
+        address: this.state.address,
+        closestTrail: this.state.closestTrail,
+        hours: this.state.hours,
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: this.props.token,
+      }),
+    })
+      .then((res) => res.json())
+      .then((logData) => {
+        console.log(logData);
+        this.setState({
+          nameOfShop: "",
+          address: "",
+          closestTrail: "",
+          hours: "",
+        });
+        this.props.getShops();
+      });
+  };
 
-    render () {
-        return (
-            <Container>
+  render() {
+    return (
+      <Container>
         <h2
           style={{
             textAlign: "center",
@@ -83,9 +85,7 @@ export default class ShopCreate extends React.Component <acceptedProps, valueTyp
                   style={{ maxWidth: "250px" }}
                   value={this.state.hours}
                   required
-                  onChange={(e) =>
-                    this.setState({ hours: e.target.value })
-                  }
+                  onChange={(e) => this.setState({ hours: e.target.value })}
                 />
               </FormGroup>
             </Col>
@@ -99,6 +99,6 @@ export default class ShopCreate extends React.Component <acceptedProps, valueTyp
           </Button>
         </Form>
       </Container>
-        )
-    }
+    );
+  }
 }

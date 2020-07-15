@@ -3,6 +3,7 @@ import TimeTable from "./timeTable";
 import TimeCreate from "./timeCreate";
 import TimeEdit from "./timeEdit";
 import { Container, Row, Col } from "reactstrap";
+import APIURL from "../helpers/environment";
 // import styled from "@types/styled-components/cssprop";
 
 // const Div = styled.div`
@@ -80,7 +81,7 @@ export default class TimeIndex extends React.Component<
   // };
 
   getTimes = () => {
-    fetch(`http://localhost:4000/time/`, {
+    fetch(`${APIURL}/time/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

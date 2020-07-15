@@ -10,6 +10,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import "./TrailTable.css";
+import APIURL from "../helpers/environment";
 
 type acceptedProps = {
   token: any;
@@ -48,7 +49,7 @@ export default class TrailTable extends React.Component<
   }
 
   deleteTrail = (trailOptions: any) => {
-    fetch(`http://localhost:4000/trail/${trailOptions.id}`, {
+    fetch(`${APIURL}/trail/${trailOptions.id}`, {
       method: "DELETE",
       headers: new Headers({
         "Content-Type": "application/json",
