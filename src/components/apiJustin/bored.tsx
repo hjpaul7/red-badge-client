@@ -1,6 +1,7 @@
 import React from "react";
 
-import {Card} from 'antd';
+import {Card, Modal, Button} from 'antd';
+import "./bored.css";
 
 type valueTypes = {
     activity: string | any;
@@ -20,6 +21,26 @@ export default class Bored extends React.Component<{}, valueTypes> {
         };
     }
 
+    showModal = () => {
+        this.setState({
+          visible: true,
+        });
+      };
+
+    handleOk = (e: any) => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    };
+
+    handleCancel = (e: any) => {
+        console.log(e);
+        this.setState({
+            visible: false,
+        });
+    };
+
     getBored = () => {
         fetch(`http://www.boredapi.com/api/activity/`)
             .then((res) => res.json())
@@ -38,11 +59,23 @@ export default class Bored extends React.Component<{}, valueTypes> {
 
     render() {
         return(
-            <div>
-                <Card title="The answer to your boredom" style={{ width: 300, marginLeft: 200, marginTop: 200 }}>
+            <div className="mainDiv">
+                <div className="card">
+                <Card title="The answer to your boredom" style={{ width: 300, marginTop: 200, backgroundColor: 'transparent', border: "3px solid white", borderRadius: "100%" }}>
+                    <Button type="primary" onClick={this.showModal}>
+                        Find the answer
+                    </Button>
+                    <Modal 
+                        title="The answer to your boredom"
+                        visible={this.state.visible}
+                        onOk={this.handleOk}
+                        onCancel={this.handleCancel}
+                    >
                     <p>{this.state.activity}</p>
                     <p>{this.state.type}</p>
+                    </Modal>
                 </Card>
+                </div>
             </div>
         )
     }
