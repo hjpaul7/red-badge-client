@@ -100,6 +100,7 @@ export default class Sidebar extends React.Component<acceptedProps, {}> {
               <Link to="/Jeopardy" className="jeopardyapi-link">
                 <span className="link-text">Ask Trebek</span>
               </Link>
+            </li>
 
             <li className="nav-item">
               <Link to="/Taco" className="nav-link">
