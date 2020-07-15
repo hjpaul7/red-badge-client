@@ -1,7 +1,8 @@
-body{
+.mainDiv{
     background-image: url("../../assets/boredBulldog.jpg");
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: 99%;
+    height: 1200px;
 }
 .card{
     margin-left: 30%;
