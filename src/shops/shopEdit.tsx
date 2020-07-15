@@ -10,6 +10,7 @@ import React from "react";
 // } from "reactstrap";
 
 import { Input, Space, Button, Modal } from "antd";
+import APIURL from "../helpers/environment";
 
 type acceptedProps = {
   token: any;
@@ -24,8 +25,10 @@ type valueTypes = {
   visible: boolean | any;
 };
 
-
-export default class ShopEdit extends React.Component< acceptedProps, valueTypes > {
+export default class ShopEdit extends React.Component<
+  acceptedProps,
+  valueTypes
+> {
   constructor(props: acceptedProps) {
     super(props);
     this.state = {
@@ -50,7 +53,7 @@ export default class ShopEdit extends React.Component< acceptedProps, valueTypes
 
   shopUpdate = (event: any) => {
     event.preventDefault();
-    fetch(`http://localhost:4000/shop/${this.props.shopToUpdate.id}`, {
+    fetch(`${APIURL}/shop/${this.props.shopToUpdate.id}`, {
       method: "PUT",
       body: JSON.stringify({
         hours: this.state.hours,

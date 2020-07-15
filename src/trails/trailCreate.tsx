@@ -2,6 +2,7 @@ import React from "react";
 import { Form, FormGroup, Label, Container, Row, Col } from "reactstrap";
 
 import { Button, Input } from "antd";
+import APIURL from "../helpers/environment";
 
 type acceptedProps = {
   token: any;
@@ -36,7 +37,7 @@ export default class TrailCreate extends React.Component<
 
   handleSubmit = (event: any) => {
     event.preventDefault();
-    fetch(`http://localhost:4000/trail/`, {
+    fetch(`${APIURL}/trail/`, {
       method: "POST",
       body: JSON.stringify({
         nameOfPark: this.state.nameOfPark,
@@ -118,17 +119,19 @@ export default class TrailCreate extends React.Component<
               </FormGroup>
             </Col>
             <Col md="6">
-                <FormGroup>
-                  <Label htmlFor="trailOptions" />
-                  <h5 style={{ letterSpacing: "1px" }}>Trail Options</h5>
-                  <Input
-                    name="trailOptions"
-                    style={{ maxWidth: "250px" }}
-                    value={this.state.trailOptions}
-                    required
-                    onChange={(e) => this.setState({ trailOptions: e.target.value})}
-                  />
-                </FormGroup>
+              <FormGroup>
+                <Label htmlFor="trailOptions" />
+                <h5 style={{ letterSpacing: "1px" }}>Trail Options</h5>
+                <Input
+                  name="trailOptions"
+                  style={{ maxWidth: "250px" }}
+                  value={this.state.trailOptions}
+                  required
+                  onChange={(e) =>
+                    this.setState({ trailOptions: e.target.value })
+                  }
+                />
+              </FormGroup>
             </Col>
           </Row>
           <Button

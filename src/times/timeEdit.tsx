@@ -1,4 +1,5 @@
 import React from "react";
+import APIURL from "../helpers/environment";
 
 // import {
 //   Form,
@@ -58,7 +59,7 @@ export default class TimeEdit extends React.Component<
 
   timeUpdate = (event: any) => {
     event.preventDefault();
-    fetch(`http://localhost:4000/time/${this.props.timeToUpdate.id}`, {
+    fetch(`${APIURL}/time/${this.props.timeToUpdate.id}`, {
       method: "PUT",
       body: JSON.stringify({
         nameOfPark: this.state.nameOfPark,

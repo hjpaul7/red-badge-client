@@ -2,6 +2,7 @@ import React from "react";
 import { FormGroup, Label, Form } from "reactstrap";
 import * as bcrypt from "bcryptjs";
 import { Input, Space, Button, Modal } from "antd";
+import APIURL from "../../helpers/environment";
 
 const salt = bcrypt.genSaltSync(10);
 
@@ -59,7 +60,7 @@ export default class UserEdit extends React.Component<
 
   usersUpdate = (event: any) => {
     event.preventDefault();
-    fetch(`http://localhost:4000/user/${this.props.usersToUpdate.id}`, {
+    fetch(`${APIURL}/user/${this.props.usersToUpdate.id}`, {
       method: "PUT",
       body: JSON.stringify({
         user: {
