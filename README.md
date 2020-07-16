@@ -9,7 +9,9 @@ We saw a purpose for this because self improvement on beating ones own time is a
 Build status
 
 Endpoints (19):
+
 User Register /register (User can register)
+
 User Login /login (User can login)
 User Get (for DB) / (User ID attaches to Times table upon create)
 Admin Register new user /adminregister (Admin can register new user through admin portal with userRole)
