@@ -1,4 +1,4 @@
-Project Title
+IN Mountain Biking Trails
 
 We have created an app for local mountain-bikers to be able to keep track of the trails they ride, input their times, and find near-by bike shops for quick repair if needed. 
 
