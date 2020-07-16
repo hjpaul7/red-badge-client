@@ -8,6 +8,32 @@ We saw a purpose for this because self improvement on beating ones own time is a
 
 Build status
 
+Endpoints (19):
+User Register /register (User can register)
+User Login /login (User can login)
+User Get (for DB) / (User ID attaches to Times table upon create)
+Admin Register new user /adminregister (Admin can register new user through admin portal with userRole)
+Admin Get Users /adminget (Fetches are currently registered users)
+Admin Edit User /adminput (Admins can edit users username, password and userRole)
+Admin Delete User /admindelete (Admins can delete any user including other admins)
+Time Create (Create a time for a trail while attaching users ID to table)
+Time Edit (Edit any time in DB)
+Time Delete (Delete any time in DB)
+Time Get (Fetch all logged times)
+Trails Create (Create a trail log)
+Trails Edit (Edit any trail in DB)
+Trails Delete (Delete any time in DB)
+Trails Get (Fetch all logged trails)
+Shops Create (Create a bike shop log)
+Shops Edit (Edit any bike shop in DB)
+Shops Delete (Delete any bike shop in DB)
+Shops Get (Fetch all bike shops)
+
+Client API Fetch Endpoints:
+Taco (Hustin)
+Bored (Justin)
+Jeopardy (Michelle)
+
 
 Code Style
 
@@ -18,10 +44,10 @@ Tech/ Framework
 React Legacy / Typescript
 
 How to use:
-create a new user account
-Along the left side you will be able to access the trails, times, and bike shops.
-when you have completed a trail, input your completed time 
-you will also be able to add a Trail
+- Create a new user account
+- Along the left side you will be able to access the trails, times, and bike shops.
+- Add a new mountain biking trail.
+- After you have completed a trail, input your completed time.
 
 Credit
 Contributors: 
